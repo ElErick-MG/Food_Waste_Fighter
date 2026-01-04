@@ -1,0 +1,7 @@
+controlador\AlimentoServlet.class
+modelo\IngredienteReceta.class
+modelo\Alimento.class
+modelo\JPAUtil.class
+modelo\Receta.class
+modelo\Categoria.class
+modelo\Usuario.class

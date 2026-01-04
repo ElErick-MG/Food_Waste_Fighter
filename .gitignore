@@ -1,0 +1,37 @@
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# Java
+*.class
+*.log
+
+# Build folders
+bin/
+target/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE backups
+*~
+*.swp
+*.swo
+
+# Maven
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+build/
+
+# IntelliJ (por si alguien lo abre ahí)
+.idea/
+*.iml
+
+# VS Code (opcional)
+.vscode/

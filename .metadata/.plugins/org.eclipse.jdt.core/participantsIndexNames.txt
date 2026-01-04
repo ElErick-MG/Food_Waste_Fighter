@@ -1,0 +1,11 @@
+INDEX VERSION 1.134
+C:\Users\erick\Downloads\MYSQL\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1188587523.index
+\Food_Waste_Fighter\src\main\java
+C:\Users\erick\Downloads\MYSQL\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2957443951.index
+\Food_Waste_Fighter\src\main\java
+C:\Users\erick\Downloads\MYSQL\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4293897153.index
+\Food_Waste_Fighter\src\main\java
+C:\Users\erick\Downloads\MYSQL\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1698877914.index
+\Food_Waste_Fighter\src\main\java
+C:\Users\erick\Downloads\MYSQL\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3120151281.index
+\Eliminar\src\main\java

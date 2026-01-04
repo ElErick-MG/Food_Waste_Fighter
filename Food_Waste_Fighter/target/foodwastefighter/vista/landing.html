@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Waste Fighter - Lucha contra el desperdicio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- NAVBAR PÚBLICA -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-content">
+                <div class="flex items-center">
+                    <a href="landing.html" class="navbar-logo">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        Food Waste Fighter
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <a href="login.html" class="text-gray-600 hover:text-green-600 font-medium">
+                        Iniciar Sesión
+                    </a>
+                    <a href="register.html" class="btn btn-primary">
+                        Comenzar Gratis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
+        <div class="hero-section page-transition">
+            <!-- Columna de Texto -->
+            <div class="w-full md:w-1/2">
+                <span class="hero-badge">
+                    Reducir, Reutilizar, Transformar
+                </span>
+                <h1 class="hero-title">
+                    Lucha contra el
+                    <span class="hero-title-highlight">desperdicio de comida</span>
+                </h1>
+                <p class="hero-description">
+                    Transforma tu relación con la comida. Descubre cómo reducir desperdicios, ahorrar dinero y cuidar el planeta con nuestras soluciones innovadoras.
+                </p>
+                <div class="flex gap-4">
+                    <a href="register.html" class="btn btn-primary text-lg">
+                        Comenzar Ahora
+                    </a>
+                    <a href="dashboard.html" class="btn btn-secondary text-lg">
+                        Ver Demo
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Columna de Imagen -->
+            <div class="w-full md:w-1/2 mt-8 md:mt-0">
+                <div class="bg-green-100/50 rounded-2xl h-96 flex items-center justify-center">
+                    <div class="text-center text-green-700">
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        <p class="mt-2 font-medium">Próximamente más información</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE CARACTERÍSTICAS -->
+        <section class="features-section">
+            <div class="features-header">
+                <h2 class="features-title">Características Poderosas</h2>
+                <p class="features-subtitle">Herramientas diseñadas para hacer la diferencia en tu hogar y en el planeta.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Característica 1: Reduce Desperdicios -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Reduce Desperdicios</h3>
+                    <p class="feature-description">Monitorea y registra tu consumo de alimentos para identificar patrones de desperdicio.</p>
+                </div>
+
+                <!-- Característica 2: Recetas Inteligentes -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Recetas Inteligentes</h3>
+                    <p class="feature-description">Descubre recetas personalizadas basadas en ingredientes que tienes a punto de vencer.</p>
+                </div>
+
+                <!-- Característica 3: Análisis Detallado -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Análisis Detallado</h3>
+                    <p class="feature-description">Visualiza tus ahorros económicos y ambientales con reportes interactivos.</p>
+                </div>
+
+                <!-- Característica 4: Comunidad Activa -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Comunidad Activa</h3>
+                    <p class="feature-description">Conecta con otros eco-guerreros y comparte tus mejores prácticas.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SECCIÓN DE ESTADÍSTICAS -->
+    <section class="bg-gray-200 py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+                <!-- Estadística 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="stat-number mb-2">2.3M</div>
+                    <div class="text-gray-600 font-medium">Toneladas Guardadas</div>
+                </div>
+
+                <!-- Estadística 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="stat-number mb-2">$450M</div>
+                    <div class="text-gray-600 font-medium">Ahorrado en Comida</div>
+                </div>
+
+                <!-- Estadística 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="stat-number mb-2">150K+</div>
+                    <div class="text-gray-600 font-medium">Usuarios Activos</div>
+                </div>
+
+                <!-- Estadística 4 -->
+                <div class="flex flex-col items-center">
+                    <div class="stat-number mb-2">98%</div>
+                    <div class="text-gray-600 font-medium">Satisfacción</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Grid principal del footer -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Columna 1: Logo y descripción -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="bg-green-600 rounded-lg p-2">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <span class="text-white font-bold text-lg">Food Waste Fighter</span>
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        Transformando la forma en que las personas interactúan con la comida.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Línea divisoria -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <!-- Copyright -->
+                    <p class="text-sm text-gray-400">
+                        © 2025 Food Waste Fighter. Todos los derechos reservados.
+                    </p>
+
+                    <!-- Redes sociales -->
+                    <div class="flex gap-6">
+                        <a href="https://x.com/" class="footer-link hover:text-green-500">
+                            <span class="sr-only">Twitter</span>
+                            Twitter
+                        </a>
+                        <a href="https://www.instagram.com/" class="footer-link hover:text-green-500">
+                            <span class="sr-only">Instagram</span>
+                            Instagram
+                        </a>
+                        <a href="https://www.linkedin.com/" class="footer-link hover:text-green-500">
+                            <span class="sr-only">LinkedIn</span>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

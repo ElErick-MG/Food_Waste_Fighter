@@ -51,6 +51,7 @@ public class AlimentoController extends HttpServlet {
             case "eliminar":
                 eliminar(request, response);
                 break;
+            case "listar":
             default:
                 listarAlimentos(request, response);
                 break;
@@ -66,6 +67,9 @@ public class AlimentoController extends HttpServlet {
             case "guardar":
                 guardar(request, response);
                 break;
+            case "actualizar":
+                actualizar(request, response);
+                break;
             case "confirmar":
                 confirmar(request, response);
                 break;
@@ -75,19 +79,15 @@ public class AlimentoController extends HttpServlet {
         }
     }
 
-    // CU Registrar Alimento - Paso 1: Usuario solicita registrar()
-    // Muestra formulario con categorías (paso 3 del diagrama de robustez)
+    // CU REGISTRAR ALIMENTO - Paso 1,2,3: desplegarFormulario(Categorias)
     private void registrar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Paso 2: obtenerCategorias() - obtener categorías para el formulario
         List<Categoria> categorias = categoriaDAO.obtenerCategorias();
         request.setAttribute("categorias", categorias);
-        
-        // Paso 3: desplegarFormulario(Categorias) - mostrar formulario de registro
         request.getRequestDispatcher("registrarAlimento.jsp").forward(request, response);
     }
 
-    // CU Registrar Alimento - Paso 3: Usuario solicita guardar()
+    // CU REGISTRAR ALIMENTO - Paso 4,5,6,7: crear, agregar, obtenerAlimentos, mostrar
     private void guardar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -96,11 +96,9 @@ public class AlimentoController extends HttpServlet {
         String fechaCaducidadStr = request.getParameter("fechaCaducidad");
         String cantidad = request.getParameter("cantidad");
 
-        // Obtener inventario del usuario desde la sesión
         HttpSession session = request.getSession();
         Inventario inventario = (Inventario) session.getAttribute("inventario");
 
-        // Obtener la categoría seleccionada
         List<Categoria> categorias = categoriaDAO.obtenerCategorias();
         Categoria categoriaSeleccionada = null;
         for (Categoria cat : categorias) {
@@ -110,52 +108,30 @@ public class AlimentoController extends HttpServlet {
             }
         }
 
-        // Parsear fecha
-        Date fechaCaducidad = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            fechaCaducidad = sdf.parse(fechaCaducidadStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date fechaCaducidad = parsearFecha(fechaCaducidadStr);
 
-        // Paso 4: crear(nombre, categoria, fechaCaducidad, cantidad) - crear el alimento
         Alimento alimento = new Alimento(nombre, categoriaSeleccionada, fechaCaducidad, cantidad, inventario);
         alimentoDAO.crear(alimento);
-
-        // Paso 5: agregar(alimento) - agregar al inventario
         inventarioDAO.agregar(alimento);
 
-        // Paso 6: obtenerAlimentos() - obtener lista actualizada
-        List<Alimento> alimentos = inventarioDAO.obtenerAlimentos(inventario);
-        request.setAttribute("alimentos", alimentos);
-
-        // Paso 7: mostrar(alimentos) - mostrar lista actualizada
-        request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
+        response.sendRedirect("AlimentoController?accion=listar");
     }
 
-    // CU Editar Alimento - Paso 1: Usuario solicita editar()
+    // CU EDITAR ALIMENTO - Paso 1,2,3,4: buscarPorID, obtenerCategorias, desplegarFormulario
     private void editar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         Long idAlimento = Long.parseLong(request.getParameter("id"));
-
-        // Paso 2: buscarPorID(alimento) - buscar el alimento a editar
         Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
-
-        // Paso 3: obtenerCategorias() - obtener categorías para el formulario
         List<Categoria> categorias = categoriaDAO.obtenerCategorias();
 
         request.setAttribute("alimento", alimento);
         request.setAttribute("categorias", categorias);
-
-        // Paso 4: desplegarFormulario(alimento) - mostrar formulario de edición
         request.getRequestDispatcher("editarAlimento.jsp").forward(request, response);
     }
 
-    // CU Editar Alimento - Paso 4: Usuario solicita guardar cambios
-    // Se usa el mismo método guardar con lógica para actualizar
-    private void actualizarAlimento(HttpServletRequest request, HttpServletResponse response)
+    // CU EDITAR ALIMENTO - Paso 5,6,7: actualizar, obtenerAlimentos, mostrar
+    private void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         Long idAlimento = Long.parseLong(request.getParameter("idAlimento"));
@@ -164,10 +140,8 @@ public class AlimentoController extends HttpServlet {
         String fechaCaducidadStr = request.getParameter("fechaCaducidad");
         String cantidad = request.getParameter("cantidad");
 
-        // Buscar alimento existente
         Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
 
-        // Obtener la categoría seleccionada
         List<Categoria> categorias = categoriaDAO.obtenerCategorias();
         Categoria categoriaSeleccionada = null;
         for (Categoria cat : categorias) {
@@ -177,79 +151,64 @@ public class AlimentoController extends HttpServlet {
             }
         }
 
-        // Parsear fecha
-        Date fechaCaducidad = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            fechaCaducidad = sdf.parse(fechaCaducidadStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date fechaCaducidad = parsearFecha(fechaCaducidadStr);
 
-        // Actualizar datos
         alimento.setNombre(nombre);
         alimento.setCategoria(categoriaSeleccionada);
         alimento.setFechaCaducidad(fechaCaducidad);
         alimento.setCantidad(cantidad);
 
-        // Paso 5: actualizar(nombre, fechaCaducidad, categoria, cantidad)
         alimentoDAO.actualizar(alimento);
-
-        // Paso 6: obtenerAlimentos() - obtener lista actualizada
-        HttpSession session = request.getSession();
-        Inventario inventario = (Inventario) session.getAttribute("inventario");
-        List<Alimento> alimentos = inventarioDAO.obtenerAlimentos(inventario);
-        request.setAttribute("alimentos", alimentos);
-
-        // Paso 7: mostrar(alimentos) - mostrar lista actualizada
-        request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
+        response.sendRedirect("AlimentoController?accion=listar");
     }
+
+    // CU ELIMINAR ALIMENTO - Paso 1,2,3: buscarPorID, desplegarConfirmacion
     private void eliminar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         Long idAlimento = Long.parseLong(request.getParameter("id"));
-
-        // Paso 2: buscarPorID(Alimento) - buscar el alimento a eliminar
         Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
-
         request.setAttribute("alimento", alimento);
-
-        // Paso 3: desplegarConfirmacion() - mostrar ventana de confirmación
         request.getRequestDispatcher("eliminarAlimento.jsp").forward(request, response);
     }
 
-    // CU Eliminar Alimento - Paso 4: Usuario confirma eliminación
+    // CU ELIMINAR ALIMENTO - Paso 4,5,6,7: confirmar, eliminar, obtenerAlimentos, mostrar
     private void confirmar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         Long idAlimento = Long.parseLong(request.getParameter("idAlimento"));
-
-        // Buscar alimento
         Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
-
-        // Paso 5: eliminar() - eliminar el alimento
         alimentoDAO.eliminar(alimento);
+        response.sendRedirect("AlimentoController?accion=listar");
+    }
 
-        // Paso 6: obtenerAlimentos() - obtener lista actualizada
+    // Listar alimentos del inventario
+    private void listarAlimentos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         Inventario inventario = (Inventario) session.getAttribute("inventario");
+        
         List<Alimento> alimentos = inventarioDAO.obtenerAlimentos(inventario);
         request.setAttribute("alimentos", alimentos);
-
-        // Paso 7: mostrar(Alimentos) - mostrar lista actualizada
         request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
+    }
+
+    private Date parsearFecha(String fechaStr) {
+        Date fecha = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            fecha = sdf.parse(fechaStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fecha;
     }
 
     @Override
     public void destroy() {
-        if (alimentoDAO != null) {
-            alimentoDAO.cerrar();
-        }
-        if (categoriaDAO != null) {
-            categoriaDAO.cerrar();
-        }
-        if (inventarioDAO != null) {
-            inventarioDAO.cerrar();
-        }
+        if (alimentoDAO != null) alimentoDAO.cerrar();
+        if (categoriaDAO != null) categoriaDAO.cerrar();
+        if (inventarioDAO != null) inventarioDAO.cerrar();
     }
 }

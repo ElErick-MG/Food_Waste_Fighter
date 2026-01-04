@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Producto - Food Waste Fighter</title>
+    <title>Eliminar Producto - Food Waste Fighter</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,62 +64,51 @@
                 Volver al Inventario
             </a>
 
-            <h1 class="text-3xl font-bold text-center mb-8">Editar Producto</h1>
-            
             <div class="max-w-lg mx-auto">
                 <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <!-- Icono de advertencia -->
+                    <div class="flex justify-center mb-6">
+                        <div class="bg-red-100 p-4 rounded-full">
+                            <svg class="w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <h1 class="text-2xl font-bold text-center mb-2">¿Eliminar Producto?</h1>
+                    <p class="text-gray-600 text-center mb-6">Esta acción no se puede deshacer</p>
+                    
+                    <!-- Detalles del producto -->
+                    <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Nombre</p>
+                                <p class="font-semibold">${alimento.nombre}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Categoría</p>
+                                <p class="font-semibold">${alimento.categoria.nombre}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Fecha de Caducidad</p>
+                                <p class="font-semibold"><fmt:formatDate value="${alimento.fechaCaducidad}" pattern="dd/MM/yyyy"/></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Cantidad</p>
+                                <p class="font-semibold">${alimento.cantidad}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones de acción -->
                     <form action="${pageContext.request.contextPath}/AlimentoController" method="post">
-                        <input type="hidden" name="accion" value="actualizar">
+                        <input type="hidden" name="accion" value="confirmar">
                         <input type="hidden" name="idAlimento" value="${alimento.idAlimento}">
                         
-                        <h3 class="text-xl font-semibold mb-6">Modificar Información del Producto</h3>
-                        
-                        <div class="mb-4">
-                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">
-                                Nombre del Producto
-                            </label>
-                            <input type="text" id="nombre" name="nombre" value="${alimento.nombre}" required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="categoria" class="block text-sm font-medium text-gray-700 mb-1">
-                                Categoría
-                            </label>
-                            <select id="categoria" name="categoria" required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white">
-                                <option value="">Selecciona una categoría</option>
-                                <c:forEach var="cat" items="${categorias}">
-                                    <option value="${cat.idCategoria}" 
-                                        <c:if test="${cat.idCategoria == alimento.categoria.idCategoria}">selected</c:if>>
-                                        ${cat.nombre}
-                                    </option>
-                                </c:forEach>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="fechaCaducidad" class="block text-sm font-medium text-gray-700 mb-1">
-                                Fecha de Caducidad
-                            </label>
-                            <fmt:formatDate value="${alimento.fechaCaducidad}" pattern="yyyy-MM-dd" var="fechaFormateada"/>
-                            <input type="date" id="fechaCaducidad" name="fechaCaducidad" value="${fechaFormateada}" required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="cantidad" class="block text-sm font-medium text-gray-700 mb-1">
-                                Cantidad
-                            </label>
-                            <input type="text" id="cantidad" name="cantidad" value="${alimento.cantidad}" 
-                                placeholder="ej. 2 litros, 5 unidades" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-
                         <div class="flex gap-3">
                             <button type="submit" 
-                                class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
-                                Guardar Cambios
+                                class="flex-1 bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                                Sí, Eliminar
                             </button>
                             <a href="${pageContext.request.contextPath}/AlimentoController?accion=listar" 
                                 class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors text-center leading-relaxed">

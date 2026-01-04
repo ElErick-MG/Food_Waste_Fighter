@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-         version="4.0">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
 
     <display-name>Food Waste Fighter</display-name>
     <description>Aplicación para gestionar inventario de alimentos y reducir desperdicio</description>
@@ -51,8 +51,10 @@
     </error-page>
 
     <!-- Listener para cerrar EntityManagerFactory al detener la aplicación -->
+    <!-- COMENTADO: Crear la clase si es necesario
     <listener>
-        <listener-class>controlador.AppContextListener</listener-class>
+        <listener-class>control.AppContextListener</listener-class>
     </listener>
+    -->
 
 </web-app>

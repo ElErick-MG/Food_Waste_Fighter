@@ -48,6 +48,23 @@ public class AlimentoDAO {
         }
     }
 
+    // Método usado en CU Eliminar Alimento (diagrama de robustez 3)
+    public void eliminar(Alimento alimento) {
+        try {
+            em.getTransaction().begin();
+            if (!em.contains(alimento)) {
+                alimento = em.merge(alimento);
+            }
+            em.remove(alimento);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
+        }
+    }
+
     public void cerrar() {
         if (em != null && em.isOpen()) {
             em.close();

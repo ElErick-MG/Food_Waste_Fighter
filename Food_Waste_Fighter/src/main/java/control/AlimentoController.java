@@ -218,6 +218,28 @@ public class AlimentoController extends HttpServlet {
         request.getRequestDispatcher("eliminarAlimento.jsp").forward(request, response);
     }
 
+    // CU Eliminar Alimento - Paso 4: Usuario confirma eliminación
+    private void confirmar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        Long idAlimento = Long.parseLong(request.getParameter("idAlimento"));
+
+        // Buscar alimento
+        Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
+
+        // Paso 5: eliminar() - eliminar el alimento
+        alimentoDAO.eliminar(alimento);
+
+        // Paso 6: obtenerAlimentos() - obtener lista actualizada
+        HttpSession session = request.getSession();
+        Inventario inventario = (Inventario) session.getAttribute("inventario");
+        List<Alimento> alimentos = inventarioDAO.obtenerAlimentos(inventario);
+        request.setAttribute("alimentos", alimentos);
+
+        // Paso 7: mostrar(Alimentos) - mostrar lista actualizada
+        request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
+    }
+
     @Override
     public void destroy() {
         if (alimentoDAO != null) {

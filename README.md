@@ -29,10 +29,10 @@
 
 ### Backend
 - **Java 17** - Lenguaje de programación principal
-- **Jakarta EE 10** - Plataforma empresarial (Servlets, JSP, JPA)
-- **JPA/Hibernate** - ORM para persistencia de datos
+- **Jakarta EE 10** - Plataforma empresarial (Servlets, JSP, JSTL)
+- **JPA 3.0** con **EclipseLink 4.0.2** como proveedor y ORM para persistencia de datos
 - **EclipseLink** - Implementación de JPA
-- **Maven** - Gestor de dependencias y construcción
+- **Maven 3.x** - Gestor de dependencias y construcción
 
 ### Frontend
 - **JSP (Jakarta Server Pages)** - Vistas dinámicas

@@ -204,6 +204,19 @@ public class AlimentoController extends HttpServlet {
         // Paso 7: mostrar(alimentos) - mostrar lista actualizada
         request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
     }
+    private void eliminar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        Long idAlimento = Long.parseLong(request.getParameter("id"));
+
+        // Paso 2: buscarPorID(Alimento) - buscar el alimento a eliminar
+        Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
+
+        request.setAttribute("alimento", alimento);
+
+        // Paso 3: desplegarConfirmacion() - mostrar ventana de confirmación
+        request.getRequestDispatcher("eliminarAlimento.jsp").forward(request, response);
+    }
 
     @Override
     public void destroy() {

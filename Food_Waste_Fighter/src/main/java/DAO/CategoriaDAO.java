@@ -1,19 +1,22 @@
 package DAO;
 
 import entities.Categoria;
+import entities.JPAUtil;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import java.util.List;
 
+/**
+ * DAO para gestionar operaciones de la entidad Categoria.
+ */
 public class CategoriaDAO {
 
-    private EntityManagerFactory emf;
     private EntityManager em;
 
+    /**
+     * Constructor que obtiene el EntityManager desde JPAUtil
+     */
     public CategoriaDAO() {
-        emf = Persistence.createEntityManagerFactory("InventarioPU");
-        em = emf.createEntityManager();
+        this.em = JPAUtil.getEntityManager();
     }
 
     // Método usado en CU Registrar Alimento y Editar Alimento (diagramas de robustez 1 y 2)
@@ -21,12 +24,13 @@ public class CategoriaDAO {
         return em.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
     }
 
+    /**
+     * Cierra el EntityManager asociado a este DAO.
+     * IMPORTANTE: Solo cierra el EntityManager, NO el EntityManagerFactory.
+     */
     public void cerrar() {
         if (em != null && em.isOpen()) {
             em.close();
-        }
-        if (emf != null && emf.isOpen()) {
-            emf.close();
         }
     }
 }

@@ -2,19 +2,22 @@ package DAO;
 
 import entities.Alimento;
 import entities.Inventario;
+import entities.JPAUtil;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import java.util.List;
 
+/**
+ * DAO para gestionar operaciones de la entidad Inventario.
+ */
 public class InventarioDAO {
 
-    private EntityManagerFactory emf;
     private EntityManager em;
 
+    /**
+     * Constructor que obtiene el EntityManager desde JPAUtil
+     */
     public InventarioDAO() {
-        emf = Persistence.createEntityManagerFactory("InventarioPU");
-        em = emf.createEntityManager();
+        this.em = JPAUtil.getEntityManager();
     }
 
     // Método usado en CU Registrar Alimento (diagrama de robustez 1)
@@ -48,12 +51,13 @@ public class InventarioDAO {
         return em.find(Inventario.class, idInventario);
     }
 
+    /**
+     * Cierra el EntityManager asociado a este DAO.
+     * IMPORTANTE: Solo cierra el EntityManager, NO el EntityManagerFactory.
+     */
     public void cerrar() {
         if (em != null && em.isOpen()) {
             em.close();
-        }
-        if (emf != null && emf.isOpen()) {
-            emf.close();
         }
     }
 }

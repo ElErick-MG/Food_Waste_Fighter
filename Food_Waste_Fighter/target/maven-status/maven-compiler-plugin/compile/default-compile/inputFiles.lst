@@ -1,7 +1,9 @@
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\modelo\Categoria.java
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\modelo\Receta.java
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\controlador\AlimentoServlet.java
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\modelo\JPAUtil.java
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\modelo\Usuario.java
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\modelo\Alimento.java
-C:\Users\erick\Downloads\MYSQL\Food_Waste_Fighter\src\main\java\modelo\IngredienteReceta.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\entities\JPAUtil.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\entities\Alimento.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\DAO\CategoriaDAO.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\entities\Inventario.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\entities\Categoria.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\control\AlimentoController.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\control\GestorCaducidadController.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\DAO\AlimentoDAO.java
+C:\Users\USER\Downloads\Food_Waste_Fighter\Food_Waste_Fighter\src\main\java\DAO\InventarioDAO.java

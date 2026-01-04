@@ -1,7 +1,9 @@
-controlador\AlimentoServlet.class
-modelo\IngredienteReceta.class
-modelo\Alimento.class
-modelo\JPAUtil.class
-modelo\Receta.class
-modelo\Categoria.class
-modelo\Usuario.class
+DAO\AlimentoDAO.class
+DAO\CategoriaDAO.class
+control\AlimentoController.class
+DAO\InventarioDAO.class
+entities\Alimento.class
+control\GestorCaducidadController.class
+entities\JPAUtil.class
+entities\Inventario.class
+entities\Categoria.class

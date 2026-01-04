@@ -134,6 +134,77 @@ public class AlimentoController extends HttpServlet {
         request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
     }
 
+    // CU Editar Alimento - Paso 1: Usuario solicita editar()
+    private void editar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        Long idAlimento = Long.parseLong(request.getParameter("id"));
+
+        // Paso 2: buscarPorID(alimento) - buscar el alimento a editar
+        Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
+
+        // Paso 3: obtenerCategorias() - obtener categorías para el formulario
+        List<Categoria> categorias = categoriaDAO.obtenerCategorias();
+
+        request.setAttribute("alimento", alimento);
+        request.setAttribute("categorias", categorias);
+
+        // Paso 4: desplegarFormulario(alimento) - mostrar formulario de edición
+        request.getRequestDispatcher("editarAlimento.jsp").forward(request, response);
+    }
+
+    // CU Editar Alimento - Paso 4: Usuario solicita guardar cambios
+    // Se usa el mismo método guardar con lógica para actualizar
+    private void actualizarAlimento(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        Long idAlimento = Long.parseLong(request.getParameter("idAlimento"));
+        String nombre = request.getParameter("nombre");
+        Long idCategoria = Long.parseLong(request.getParameter("categoria"));
+        String fechaCaducidadStr = request.getParameter("fechaCaducidad");
+        String cantidad = request.getParameter("cantidad");
+
+        // Buscar alimento existente
+        Alimento alimento = alimentoDAO.buscarPorID(idAlimento);
+
+        // Obtener la categoría seleccionada
+        List<Categoria> categorias = categoriaDAO.obtenerCategorias();
+        Categoria categoriaSeleccionada = null;
+        for (Categoria cat : categorias) {
+            if (cat.getIdCategoria().equals(idCategoria)) {
+                categoriaSeleccionada = cat;
+                break;
+            }
+        }
+
+        // Parsear fecha
+        Date fechaCaducidad = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            fechaCaducidad = sdf.parse(fechaCaducidadStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // Actualizar datos
+        alimento.setNombre(nombre);
+        alimento.setCategoria(categoriaSeleccionada);
+        alimento.setFechaCaducidad(fechaCaducidad);
+        alimento.setCantidad(cantidad);
+
+        // Paso 5: actualizar(nombre, fechaCaducidad, categoria, cantidad)
+        alimentoDAO.actualizar(alimento);
+
+        // Paso 6: obtenerAlimentos() - obtener lista actualizada
+        HttpSession session = request.getSession();
+        Inventario inventario = (Inventario) session.getAttribute("inventario");
+        List<Alimento> alimentos = inventarioDAO.obtenerAlimentos(inventario);
+        request.setAttribute("alimentos", alimentos);
+
+        // Paso 7: mostrar(alimentos) - mostrar lista actualizada
+        request.getRequestDispatcher("listarAlimentos.jsp").forward(request, response);
+    }
+
     @Override
     public void destroy() {
         if (alimentoDAO != null) {

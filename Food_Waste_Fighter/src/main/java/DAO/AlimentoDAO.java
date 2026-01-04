@@ -29,6 +29,24 @@ public class AlimentoDAO {
         }
     }
 
+    // Método usado en CU Editar Alimento (diagrama de robustez 2)
+    public Alimento buscarPorID(Long idAlimento) {
+        return em.find(Alimento.class, idAlimento);
+    }
+
+    // Método usado en CU Editar Alimento (diagrama de robustez 2)
+    public void actualizar(Alimento alimento) {
+        try {
+            em.getTransaction().begin();
+            em.merge(alimento);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
+        }
+    }
 
     public void cerrar() {
         if (em != null && em.isOpen()) {

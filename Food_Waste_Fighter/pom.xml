@@ -18,6 +18,14 @@
     </properties>
 
     <dependencies>
+        <!-- Jakarta Servlet API (explícita para Eclipse) -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
         <!-- Jakarta EE API -->
         <dependency>
             <groupId>jakarta.platform</groupId>
@@ -54,11 +62,15 @@
     </dependencies>
 
     <build>
+        <finalName>inventario-alimentos</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

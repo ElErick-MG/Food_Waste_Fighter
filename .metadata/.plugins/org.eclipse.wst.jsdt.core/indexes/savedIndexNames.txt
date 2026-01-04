@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\Users\erick\Downloads\MYSQL\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-562682894.index
-2031255575.index
-3369595163.index
-2251035523.index
-3017871249.index
-592164319.index
-4293897153.index

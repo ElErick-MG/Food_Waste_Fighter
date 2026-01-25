@@ -18,7 +18,7 @@ public class Alimento implements Serializable {
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 
@@ -26,10 +26,10 @@ public class Alimento implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaCaducidad;
 
-    @Column(name = "cantidad", nullable = false)
+    @Column(name = "cantidad", nullable = false, length = 50)
     private String cantidad;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_inventario", nullable = false)
     private Inventario inventario;
 
@@ -90,5 +90,10 @@ public class Alimento implements Serializable {
 
     public void setInventario(Inventario inventario) {
         this.inventario = inventario;
+    }
+    
+    @Override
+    public String toString() {
+        return "Alimento{id=" + idAlimento + ", nombre='" + nombre + "', fechaCaducidad=" + fechaCaducidad + "}";
     }
 }

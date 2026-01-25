@@ -18,7 +18,7 @@ public class Categoria implements Serializable {
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Alimento> alimentos;
 
     public Categoria() {
@@ -50,5 +50,10 @@ public class Categoria implements Serializable {
 
     public void setAlimentos(List<Alimento> alimentos) {
         this.alimentos = alimentos;
+    }
+    
+    @Override
+    public String toString() {
+        return "Categoria{id=" + idCategoria + ", nombre='" + nombre + "'}";
     }
 }

@@ -19,14 +19,24 @@ public class CategoriaDAO {
         this.em = JPAUtil.getEntityManager();
     }
 
-    // Método usado en CU Registrar Alimento y Editar Alimento (diagramas de robustez 1 y 2)
+    /**
+     * Obtiene todas las categorías disponibles.
+     * Usado en CU Registrar Alimento y Editar Alimento
+     */
     public List<Categoria> obtenerCategorias() {
-        return em.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
+        return em.createQuery("SELECT c FROM Categoria c ORDER BY c.nombre", Categoria.class)
+                .getResultList();
+    }
+    
+    /**
+     * Busca una categoría por su ID.
+     */
+    public Categoria buscarPorID(Long idCategoria) {
+        return em.find(Categoria.class, idCategoria);
     }
 
     /**
      * Cierra el EntityManager asociado a este DAO.
-     * IMPORTANTE: Solo cierra el EntityManager, NO el EntityManagerFactory.
      */
     public void cerrar() {
         if (em != null && em.isOpen()) {

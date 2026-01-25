@@ -18,7 +18,10 @@ public class AlimentoDAO {
         this.em = JPAUtil.getEntityManager();
     }
 
-    // Método usado en CU Registrar Alimento (diagrama de robustez 1)
+    /**
+     * Crea un nuevo alimento en la base de datos.
+     * Usado en CU Registrar Alimento
+     */
     public void crear(Alimento alimento) {
         try {
             em.getTransaction().begin();
@@ -32,12 +35,18 @@ public class AlimentoDAO {
         }
     }
 
-    // Método usado en CU Editar Alimento (diagrama de robustez 2)
+    /**
+     * Busca un alimento por su ID.
+     * Usado en CU Editar Alimento y Eliminar Alimento
+     */
     public Alimento buscarPorID(Long idAlimento) {
         return em.find(Alimento.class, idAlimento);
     }
 
-    // Método usado en CU Editar Alimento (diagrama de robustez 2)
+    /**
+     * Actualiza un alimento existente.
+     * Usado en CU Editar Alimento
+     */
     public void actualizar(Alimento alimento) {
         try {
             em.getTransaction().begin();
@@ -51,7 +60,10 @@ public class AlimentoDAO {
         }
     }
 
-    // Método usado en CU Eliminar Alimento (diagrama de robustez 3)
+    /**
+     * Elimina un alimento de la base de datos.
+     * Usado en CU Eliminar Alimento
+     */
     public void eliminar(Alimento alimento) {
         try {
             em.getTransaction().begin();
@@ -67,10 +79,18 @@ public class AlimentoDAO {
             throw e;
         }
     }
+    
+    /**
+     * Refresca el EntityManager para obtener datos actualizados
+     */
+    public void refrescar() {
+        if (em != null && em.isOpen()) {
+            em.clear();
+        }
+    }
 
     /**
      * Cierra el EntityManager asociado a este DAO.
-     * IMPORTANTE: Solo cierra el EntityManager, NO el EntityManagerFactory.
      */
     public void cerrar() {
         if (em != null && em.isOpen()) {

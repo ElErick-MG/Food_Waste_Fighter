@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+    xmlns="https://jakarta.ee/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+        https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    
+    <persistence-unit name="InventarioPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        
+        <!-- Entity classes -->
+        <class>entities.Usuario</class>
+        <class>entities.Alimento</class>
+        <class>entities.Categoria</class>
+        <class>entities.Inventario</class>
+        <class>entities.Receta</class>
+        <class>entities.Ingrediente</class>
+        <class>entities.PasoPreparacion</class>
+        <class>entities.InformacionNutricional</class>
+        
+        <properties>
+            <!-- JDBC Configuration -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/foodwastefighter?useUnicode=true&amp;characterEncoding=utf8&amp;connectionCollation=utf8mb4_unicode_ci&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="12345"/>
+            
+            <!-- EclipseLink Configuration -->
+            <property name="eclipselink.target-database" value="MySQL"/>
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.jdbc.native-sql" value="true"/>
+            <property name="eclipselink.jdbc.property.useUnicode" value="true"/>
+            <property name="eclipselink.jdbc.property.characterEncoding" value="utf8"/>
+
+            
+            <!-- Don't auto-create tables since we use SQL script -->
+            <property name="eclipselink.ddl-generation" value="none"/>
+            
+            <!-- Connection pool -->
+            <property name="eclipselink.jdbc.connections.min" value="2"/>
+            <property name="eclipselink.jdbc.connections.max" value="10"/>
+        </properties>
+    </persistence-unit>
+    
+</persistence>

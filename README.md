@@ -49,8 +49,12 @@
 
 ## 📋 Requisitos Previos
 
-Antes de comenzar, asegúrate de tener instalado:
+Dependiendo del método de instalación que elijas, necesitarás diferentes herramientas:
 
+### Para Instalación con Docker (Recomendado ⭐)
+- 🐳 **Docker** y **Docker Compose** instalados en tu sistema.
+
+### Para Instalación Manual Local
 - ☕ **JDK 17** o superior ([Descargar](https://www.oracle.com/java/technologies/downloads/#java17))
 - 🐬 **MySQL 8.0** o superior ([Descargar](https://dev.mysql.com/downloads/mysql/))
 - 📦 **Apache Maven 3.6+** ([Descargar](https://maven.apache.org/download.cgi))
@@ -68,9 +72,33 @@ git clone https://github.com/tu-usuario/food-waste-fighter.git
 cd food-waste-fighter
 ```
 
-### 2. Configurar la Base de Datos
+El proyecto ofrece dos métodos de instalación: mediante Docker (rápido y sin ensuciar tu entorno local) o mediante instalación manual clásica.
 
-#### Opción A: Desde la línea de comandos (CMD en Windows)
+### 🐳 Método A: Instalación con Docker (Recomendado)
+
+Esta es la forma más rápida y limpia de ejecutar la aplicación. Docker levantará automáticamente la base de datos MySQL, cargará las tablas, compilará el proyecto con Maven y lo desplegará en un servidor Tomcat.
+
+1. Navega al subdirectorio donde está el código fuente:
+```bash
+cd Food_Waste_Fighter
+```
+
+2. Ejecuta Docker Compose:
+```bash
+docker-compose up -d --build
+```
+
+3. **¡Listo!** Abre tu navegador y accede a: [http://localhost:8080/foodwastefighter](http://localhost:8080/foodwastefighter)
+
+> **Nota:** Para apagar el sistema, ejecuta `docker-compose down` en el mismo directorio.
+
+---
+
+### 🛠️ Método B: Instalación Manual
+
+#### 1. Configurar la Base de Datos
+
+##### Desde la línea de comandos (CMD en Windows)
 
 1. **Abrir el símbolo del sistema (CMD)** como administrador
 

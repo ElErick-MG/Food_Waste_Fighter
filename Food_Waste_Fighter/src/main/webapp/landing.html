@@ -12,6 +12,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Waste Fighter - Lucha contra el desperdicio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
@@ -19,18 +33,19 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- NAVBAR PÚBLICA -->
-    <nav class="navbar">
+    <nav class="navbar relative">
         <div class="navbar-container">
-            <div class="navbar-content">
+            <div class="navbar-content flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="landing.html" class="navbar-logo">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
-                        Food Waste Fighter
+                        <span class="hidden sm:inline">Food Waste Fighter</span>
                     </a>
                 </div>
-                <div class="navbar-menu">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-4">
                     <a href="AuthController?accion=login" class="text-gray-600 hover:text-green-600 font-medium">
                         Iniciar Sesión
                     </a>
@@ -38,40 +53,64 @@
                         Comenzar Gratis
                     </a>
                 </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-green-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-md absolute w-full left-0">
+            <div class="px-4 pt-4 pb-6 flex flex-col gap-4">
+                <a href="AuthController?accion=login" class="block text-center text-gray-600 hover:text-green-600 font-medium py-2">
+                    Iniciar Sesión
+                </a>
+                <a href="AuthController?accion=registro" class="btn btn-primary text-center block w-full">
+                    Comenzar Gratis
+                </a>
             </div>
         </div>
     </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            if(btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-container">
         <div class="hero-section page-transition">
             <!-- Columna de Texto -->
-            <div class="w-full md:w-1/2">
+            <div class="w-full md:w-1/2 text-center md:text-left flex flex-col items-center md:items-start">
                 <span class="hero-badge">
                     Reducir, Reutilizar, Transformar
                 </span>
                 <h1 class="hero-title">
                     Lucha contra el
-                    <span class="hero-title-highlight">desperdicio de comida</span>
+                    <span class="hero-title-highlight block md:inline">desperdicio de comida</span>
                 </h1>
-                <p class="hero-description">
+                <p class="hero-description text-center md:text-left">
                     Transforma tu relación con la comida. Descubre cómo reducir desperdicios, ahorrar dinero y cuidar el planeta con nuestras soluciones innovadoras.
                 </p>
-                <div class="flex gap-4">
-                    <a href="AuthController?accion=registro" class="btn btn-primary text-lg">
+                <div class="flex gap-4 justify-center md:justify-start w-full">
+                    <a href="AuthController?accion=registro" class="btn btn-primary text-lg w-full sm:w-auto">
                         Comenzar Ahora
                     </a>
-                </div>
-            </div>
-            
-            <!-- Columna de Imagen -->
-            <div class="w-full md:w-1/2 mt-8 md:mt-0">
-                <div class="bg-green-100/50 rounded-2xl h-96 flex items-center justify-center">
-                    <div class="text-center text-green-700">
-                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
-                        <p class="mt-2 font-medium">Próximamente más información</p>
                     </div>
                 </div>
             </div>
